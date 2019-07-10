@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  before_action :authorize_request
+  
   def authorize_request
     header = request.headers['Authorization']
     header = header.split(' ').last if header
