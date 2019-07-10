@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(version: 2019_07_10_025157) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,4 +31,5 @@ ActiveRecord::Schema.define(version: 2019_07_10_025157) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "projects", "users"
 end
