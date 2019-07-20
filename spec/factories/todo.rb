@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :todo do
-    name { 'Test Todo ' }
+  factory :card do
+    name { 'Test Card ' }
   end
 end
