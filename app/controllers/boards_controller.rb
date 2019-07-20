@@ -16,6 +16,19 @@ class BoardsController < ApplicationController
     render status: :not_found
   end
 
+  def update
+    board = @current_user.boards.find(params[:id])
+    
+    if board.update(update_params)
+      render json: board, status: :ok
+    else
+      render json: { errors: board.errors.full_messages },
+        status: :unprocessible_entity
+    end
+  rescue ActiveRecord::RecordNotFound => e
+    render status: :not_found
+  end
+
   def destroy
     board = @current_user.boards.find(params[:id])
 
@@ -33,6 +46,12 @@ class BoardsController < ApplicationController
   private
 
   def create_params
+    params.permit(
+      :title
+    )
+  end
+
+  def update_params
     params.permit(
       :title
     )
