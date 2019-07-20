@@ -34,7 +34,7 @@ class BoardsController < ApplicationController
 
   def create_params
     params.permit(
-      :name
+      :title
     )
   end
 end

@@ -4,7 +4,7 @@ RSpec.describe 'Boards', :type => :request do
   include ApiHelper
 
   let!(:valid_create_params) do
-    { name: 'Test Board' }
+    { title: 'Test Board' }
   end
 
   context 'with an unauthorized create request' do
@@ -21,7 +21,7 @@ RSpec.describe 'Boards', :type => :request do
       post '/boards', params: valid_create_params, headers: authorize_header(user)
       board = JSON.parse(response.body)
       
-      expect(board["name"]).to eq(valid_create_params[:name])
+      expect(board["title"]).to eq(valid_create_params[:title])
       expect(board["user_id"]).to eq(user.id)
     end
   end

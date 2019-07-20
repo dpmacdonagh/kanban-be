@@ -4,7 +4,7 @@ RSpec.describe 'Todos', :type => :request do
   include ApiHelper
 
   let!(:valid_create_params) do
-    { name: 'Test Card' }
+    { title: 'Test Card' }
   end
 
   context 'with an unauthorized get request' do
@@ -70,7 +70,7 @@ RSpec.describe 'Todos', :type => :request do
 
       it 'returns the card' do
         card = JSON.parse(response.body)
-        expect(card["name"]).to eq(valid_create_params[:name])
+        expect(card["title"]).to eq(valid_create_params[:title])
       end
     end
 
@@ -108,7 +108,7 @@ RSpec.describe 'Todos', :type => :request do
 
       it 'returns the card' do
         card = JSON.parse(response.body)
-        expect(card["name"]).to eq(valid_create_params[:name])
+        expect(card["title"]).to eq(valid_create_params[:title])
       end
     end
 

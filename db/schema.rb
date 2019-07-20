@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_200055) do
   enable_extension "plpgsql"
 
   create_table "boards", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_200055) do
   end
 
   create_table "cards", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.bigint "board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

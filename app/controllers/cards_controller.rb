@@ -36,7 +36,7 @@ class CardsController < ApplicationController
 
   def create_params
     params.permit(
-      :name
+      :title
     )
   end
 
