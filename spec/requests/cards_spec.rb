@@ -5,7 +5,10 @@ RSpec.describe 'Cards', :type => :request do
   include ApiHelper
 
   let!(:valid_create_params) do
-    { title: 'Test Card' }
+    {
+      title: 'Test Card',
+      description: 'Test Description'
+    }
   end
 
   include_examples 'unauthenticated CRUD requests', {
@@ -67,6 +70,7 @@ RSpec.describe 'Cards', :type => :request do
         it 'returns the card' do
           card = JSON.parse(response.body)
           expect(card["title"]).to eq(valid_create_params[:title])
+          expect(card["description"]).to eq(valid_create_params[:description])
         end
       end
   
@@ -95,11 +99,17 @@ RSpec.describe 'Cards', :type => :request do
         let(:board_id) { user_board.id }
         let(:card) { user_board.cards.create(valid_create_params) }
         let(:card_id) { card.id }
-        let(:params) { { title: "New Title" } }
+        let(:params) {
+          {
+            title: "New Title",
+            description: "New Description"
+          }
+        }
   
         it 'returns the updated card' do
           card = JSON.parse(response.body)
           expect(card["title"]).to eq(params[:title])
+          expect(card["description"]).to eq(params[:description])
         end
       end
   
@@ -107,11 +117,17 @@ RSpec.describe 'Cards', :type => :request do
         let(:board_id) { user2_board.id }
         let(:card) { user2_board.cards.create(valid_create_params) }
         let(:card_id) { card.id }
-        let(:params) { { title: "New Title" } }
+        let(:params) {
+          {
+            title: "New Title",
+            description: "New Description"
+          }
+        }
   
         it 'returns not found' do
           expect(response).to be_not_found
           expect(card.reload["title"]).not_to eq(params{:title})
+          expect(card.reload["description"]).not_to eq(params{:description})
         end
       end
     end

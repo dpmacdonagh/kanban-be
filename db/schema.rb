@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_200055) do
 
   create_table "cards", force: :cascade do |t|
     t.string "title"
+    t.text "description"
     t.bigint "board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
