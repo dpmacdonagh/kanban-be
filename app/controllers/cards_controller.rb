@@ -18,6 +18,19 @@ class CardsController < ApplicationController
     head :not_found
   end
 
+  def update
+    card = @board.cards.find(params[:id])
+    
+    if card.update(update_params)
+      render json: card, status: :ok
+    else
+      render json: { errors: card.errors.full_messages },
+        status: :unprocessible_entity
+    end
+  rescue ActiveRecord::RecordNotFound => e
+    render status: :not_found
+  end
+
   def destroy
     card = @board.cards.find(params[:id])
 
@@ -35,6 +48,12 @@ class CardsController < ApplicationController
   private
 
   def create_params
+    params.permit(
+      :title
+    )
+  end
+
+  def update_params
     params.permit(
       :title
     )
