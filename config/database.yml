@@ -82,4 +82,4 @@ production:
   <<: *default
   database: kanban-be_production
   username: kanban-be
-  password: <%= ENV['TODO-BE_DATABASE_PASSWORD'] %>
+  password: <%= ENV['KANBAN-BE_DATABASE_PASSWORD'] %>
